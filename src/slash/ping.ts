@@ -23,7 +23,7 @@ export default class ping extends BaseCommand {
 
         const client = interaction.client;
 
-        const mesg = await interaction.editReply({
+        const mesg = await interaction.reply({
             embeds: [new EmbedBuilder().setColor(0xa020f0).setTitle(`Pong!`)],
         });
 

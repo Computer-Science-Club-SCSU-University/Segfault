@@ -63,35 +63,27 @@ async function main() {
     let commands: RESTPostAPIChatInputApplicationCommandsJSONBody[] = [];
 
     const slashDirectory = path.join(__dirname, "slash");
-    const subDir = fs
+    const slashFiles = fs
         .readdirSync(slashDirectory)
-        .filter((file: string) =>
-            fs.statSync(path.join(slashDirectory, file)).isDirectory()
-        );
+        .filter((file: string) => file.endsWith(".ts") || file.endsWith(".js"));
 
     //register commands
-    for (const dir of subDir) {
-        const slashFiles = fs
-            .readdirSync(path.join(slashDirectory, dir))
-            .filter((file: string) => file.endsWith(".ts") || file.endsWith(`.js`));
-        for (const file of slashFiles) {
-            const commandClass = require(path.join(slashDirectory, dir, file))
-                .default as typeof BaseCommand;
-            const commandInstance = new commandClass();
+    for (const file of slashFiles) {
+        const commandClass = require(path.join(slashDirectory, file))
+            .default as typeof BaseCommand;
+        const commandInstance = new commandClass();
 
-            //if command does not have a data property, throw error
-            if (!commandInstance.data) {
-                console.error(`Command ${file} does not have a data property`);
-                process.exit(1);
-            }
+        //if command does not have a data property, throw error
+        if (!commandInstance.data) {
+            console.error(`Command ${file} does not have a data property`);
+            process.exit(1);
+        }
 
-            client.commands.set(commandInstance.data.name, commandInstance);
-            if (LOAD_SLASH) {
-                commands.push(commandInstance.data.toJSON());
-            }
+        client.commands.set(commandInstance.data.name, commandInstance);
+        if (LOAD_SLASH) {
+            commands.push(commandInstance.data.toJSON());
         }
     }
-
     if (LOAD_SLASH) {
         const rest = new REST({ version: "10" }).setToken(TOKEN);
         console.log("Deploying slash commands");
