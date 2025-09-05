@@ -1,0 +1,27 @@
+{
+  "name": "Segfault",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cross-env NODE_ENV=prod node ./dist/index.js",
+    "dev": "cross-env NODE_ENV=dev npx tsx watch ./src/index.ts",
+    "build": "tsc",
+    "deploy": "cross-env NODE_ENV=prod npx tsx ./src/index.ts load global",
+    "deploy:dev": "cross-env NODE_ENV=dev npx tsx ./src/index.ts load"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.14.0",
+  "dependencies": {
+    "chalk": "^5.6.0",
+    "discord.js": "^14.22.1",
+    "dotenv": "^17.2.2"
+  },
+  "devDependencies": {
+    "cross-env": "^10.0.0",
+    "tsx": "^4.20.5"
+  }
+}
