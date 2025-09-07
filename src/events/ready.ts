@@ -1,7 +1,7 @@
 import { ActivityType, Events } from "discord.js";
 import chalk from "chalk";
-import MyClient from "../client";
-import BaseEvent from "../base_event"
+import MyClient from "../types/client";
+import BaseEvent from "../types/base_event"
 
 const readyEvent: BaseEvent = {
     name: Events.ClientReady,

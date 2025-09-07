@@ -7,11 +7,11 @@ import {
     RESTPostAPIChatInputApplicationCommandsJSONBody,
     REST,
 } from "discord.js";
-import MyClient from "./client";
+import MyClient from "./types/client";
 
-import BaseCommand from "./base_command";
+import BaseCommand from "./types/base_command";
 
-import BaseEvent from "./base_event";
+import BaseEvent from "./types/base_event";
 
 import fs from "fs";
 import path from "path";
