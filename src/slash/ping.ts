@@ -5,7 +5,7 @@ import {
     ChatInputCommandInteraction,
 } from "discord.js";
 
-import BaseCommand from "../base_command";
+import BaseCommand from "../types/base_command";
 
 export default class ping extends BaseCommand {
     constructor() {

@@ -1,6 +1,6 @@
 import { Interaction, Events } from "discord.js";
-import MyClient from "../client";
-import BaseEvent from "../base_event";
+import MyClient from "../types/client";
+import BaseEvent from "../types/base_event";
 
 const interactionCreateEvent: BaseEvent = {
     name: Events.InteractionCreate,
